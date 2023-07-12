@@ -31,7 +31,7 @@ jobs:
         creds: ${{ secrets.AzureSPN }}
 
     - name: Create resource group
-      uses: azure/CLI@v1
+      uses: Azure/cli@v1.0.7
       with:
         inlineScript: >
           echo "Creating resource group in Azure"
@@ -40,7 +40,7 @@ jobs:
           az group create -l ${{ env.REGION }} -n ${{ env.RESOURCE_GROUP_NAME }}
 
     - name: Creating resources
-      uses: azure/CLI@v1
+      uses: Azure/cli@v1.0.7
       with:
         inlineScript: >
           echo "Creating resources"
@@ -93,7 +93,7 @@ jobs:
         creds: ${{ secrets.AzureSPN }}
 
     - name: Installing Container Apps extension
-      uses: azure/CLI@v1
+      uses: Azure/cli@v1.0.7
       with:
         inlineScript: >
           az config set extension.use_dynamic_install=yes_without_prompt
@@ -108,7 +108,7 @@ jobs:
         docker login -u 00000000-0000-0000-0000-000000000000 --password-stdin ${{ env.RESOURCE_GROUP_NAME }}acr.azurecr.io <<< "$refresh_token"
 
     - name: Deploy Container Apps
-      uses: azure/CLI@v1
+      uses: Azure/cli@v1.0.7
       with:
         inlineScript: >
           az containerapp registry set -n frontend -g ${{ env.RESOURCE_GROUP_NAME }} --server ${{ env.RESOURCE_GROUP_NAME }}acr.azurecr.io
