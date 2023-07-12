@@ -18,7 +18,7 @@ env:
 
 jobs:
   provision:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu
 
     steps:
 
@@ -48,7 +48,7 @@ jobs:
           az deployment group create --resource-group ${{ env.RESOURCE_GROUP_NAME }} --template-file '/github/workspace/Azure/main.bicep' --debug
 
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu
     needs: provision
     
     steps:
@@ -79,7 +79,7 @@ jobs:
         file: ${{ env.FRONTEND_DOCKER }}
 
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu
     needs: build
 
     steps:
